@@ -33,29 +33,29 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 1.5rem 4rem;
-    background: rgba(255,255,255,0.92);
+    padding: 1.25rem 4rem;
+    background: rgba(255,255,255,0.96);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 0.5px solid rgba(0,0,0,0.08);
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 300;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     color: var(--charcoal);
     text-decoration: none;
   }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
-    font-size: 13px;
-    letter-spacing: 0.1em;
+    font-size: 11px;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--mid);
     text-decoration: none;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--charcoal); }
+  .nav-links a:hover, .nav-links a.active { color: var(--charcoal); }
 
   /* HERO */
   .hero {
@@ -73,7 +73,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(8rem, 18vw, 18rem);
     font-weight: 300;
-    color: rgba(0,0,0,0.04);
+    color: rgba(0,0,0,0.035);
     letter-spacing: -0.02em;
     white-space: nowrap;
     pointer-events: none;
@@ -81,26 +81,63 @@
   }
   .hero-content { position: relative; max-width: 680px; }
   .hero-eyebrow {
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--mid);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(3rem, 6vw, 5.5rem);
     font-weight: 300;
-    line-height: 1.05;
+    line-height: 1.0;
     letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
   .hero-title em { font-style: italic; }
   .hero-sub {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--mid);
     max-width: 380px;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* CATEGORY STRIP */
+  .category-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--light);
+    background: var(--white);
+  }
+  .cat-card {
+    padding: 2rem 2.5rem;
+    border-right: 1px solid var(--light);
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .cat-card:last-child { border-right: none; }
+  .cat-card:hover { background: var(--cream); }
+  .cat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--light);
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+  .cat-name {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 0.3rem;
+  }
+  .cat-desc {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.5;
   }
   .btn {
     display: inline-block;
@@ -455,6 +492,9 @@
     .nav-links { gap: 1.5rem; }
     section { padding: 5rem 1.5rem; }
     .hero { padding: 0 1.5rem 4rem; }
+    .category-strip { grid-template-columns: repeat(2, 1fr); }
+    .cat-card:nth-child(2) { border-right: none; }
+    .cat-card:nth-child(1), .cat-card:nth-child(2) { border-bottom: 1px solid var(--light); }
     .gallery-grid { columns: 2; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .pricing-grid { grid-template-columns: 1fr; }
@@ -475,7 +515,7 @@
 <nav>
   <a href="#" class="nav-logo">Your Name</a>
   <ul class="nav-links">
-    <li><a href="#gallery">Work</a></li>
+    <li><a href="#gallery" class="active">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#pricing">Seniors</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -492,6 +532,30 @@
     <a href="#gallery" class="btn">View the Work</a>
   </div>
 </section>
+
+<!-- CATEGORY STRIP -->
+<div class="category-strip">
+  <div class="cat-card">
+    <div class="cat-num">01</div>
+    <div class="cat-name">Robotics</div>
+    <div class="cat-desc">Precision, form, and motion</div>
+  </div>
+  <div class="cat-card">
+    <div class="cat-num">02</div>
+    <div class="cat-name">Architecture</div>
+    <div class="cat-desc">Structure and negative space</div>
+  </div>
+  <div class="cat-card">
+    <div class="cat-num">03</div>
+    <div class="cat-name">Landscape</div>
+    <div class="cat-desc">Light across open terrain</div>
+  </div>
+  <div class="cat-card">
+    <div class="cat-num">04</div>
+    <div class="cat-name">Seniors</div>
+    <div class="cat-desc">Portraits for this chapter</div>
+  </div>
+</div>
 
 <!-- GALLERY -->
 <section id="gallery">
@@ -649,7 +713,7 @@
       <p>Whether you're booking a senior session, have a commercial project in mind, or just want to say hello — I'd love to hear from you.</p>
       <div class="contact-detail">
         <span class="contact-detail-label">Email</span>
-        <span class="contact-detail-val">hello@yourname.com</span>
+        <span class="contact-detail-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0b8b5bcbcbf90a9bfa5a2beb1bdb5feb3bfbd">[email&#160;protected]</a></span>
       </div>
       <div class="contact-detail">
         <span class="contact-detail-label">Phone</span>
@@ -717,7 +781,7 @@
   <img id="lightbox-img" src="" alt="">
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function filterGallery(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -748,12 +812,4 @@
 
   function handleSubmit(e) {
     e.preventDefault();
-    document.getElementById('form-success').style.display = 'block';
-    e.target.reset();
-    setTimeout(() => {
-      document.getElementById('form-success').style.display = 'none';
-    }, 5000);
-  }
-</script>
-</body>
-</html>
+   

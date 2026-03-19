@@ -5,17 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Photography</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #f7f5f0;
-    --white: #ffffff;
-    --charcoal: #1a1a1a;
-    --mid: #6b6b6b;
-    --light: #d4d0c8;
-    --accent: #2c2c2c;
+    --bg:        #09070a;
+    --surface:   #110d10;
+    --surface2:  #1a1318;
+    --border:    #2b1e24;
+    --charcoal:  #ddd0c8;
+    --mid:       #7a6a66;
+    --dim:       #4a3c3a;
+    --burgundy:  #8b1f38;
+    --burg-soft: #5c1427;
+    --burg-glow: #a8284a;
+    --rose:      #f0dde2;
+    --cream:     #1a1318;
+    --white:     #09070a;
+    --light:     #2b1e24;
+    --accent:    #8b1f38;
   }
 
   html { scroll-behavior: smooth; }
@@ -23,20 +32,23 @@
   body {
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
-    background: var(--white);
+    background: var(--bg);
     color: var(--charcoal);
     font-size: 15px;
     line-height: 1.7;
   }
+  ::selection { background: var(--burgundy); color: var(--rose); }
+
+  h1, h2, h3 { color: var(--charcoal); }
 
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.25rem 4rem;
-    background: rgba(255,255,255,0.96);
+    background: rgba(14,10,12,0.97);
     backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid rgba(0,0,0,0.08);
+    border-bottom: 0.5px solid var(--border);
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
@@ -55,14 +67,14 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-  .nav-links a:hover, .nav-links a.active { color: var(--charcoal); }
+  .nav-links a:hover, .nav-links a.active { color: var(--burg-glow); }
 
   /* HERO */
   .hero {
     min-height: 100vh;
     display: flex; align-items: flex-end;
     padding: 0 4rem 5rem;
-    background: var(--cream);
+    background: var(--surface);
     position: relative;
     overflow: hidden;
   }
@@ -73,7 +85,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(8rem, 18vw, 18rem);
     font-weight: 300;
-    color: rgba(0,0,0,0.035);
+    color: rgba(140,31,56,0.07);
     letter-spacing: -0.02em;
     white-space: nowrap;
     pointer-events: none;
@@ -108,22 +120,22 @@
   .category-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--light);
-    background: var(--white);
+    border-top: 1px solid var(--border);
+    background: var(--bg);
   }
   .cat-card {
     padding: 2rem 2.5rem;
-    border-right: 1px solid var(--light);
+    border-right: 1px solid var(--border);
     transition: background 0.2s;
     cursor: default;
   }
   .cat-card:last-child { border-right: none; }
-  .cat-card:hover { background: var(--cream); }
+  .cat-card:hover { background: var(--surface); }
   .cat-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2rem;
     font-weight: 300;
-    color: var(--light);
+    color: var(--burg-soft);
     line-height: 1;
     margin-bottom: 0.6rem;
   }
@@ -142,22 +154,23 @@
   .btn {
     display: inline-block;
     padding: 0.85rem 2.2rem;
-    font-size: 13px;
-    letter-spacing: 0.1em;
+    font-size: 12px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1px solid var(--charcoal);
+    border: 1px solid var(--burgundy);
     color: var(--charcoal);
     background: transparent;
-    transition: background 0.25s, color 0.25s;
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
     cursor: pointer;
   }
-  .btn:hover { background: var(--charcoal); color: var(--white); }
+  .btn:hover { background: var(--burgundy); color: #f0e0e4; border-color: var(--burgundy); }
   .btn-solid {
-    background: var(--charcoal);
-    color: var(--white);
+    background: var(--burgundy);
+    color: #f0e0e4;
+    border-color: var(--burgundy);
   }
-  .btn-solid:hover { background: #3d3d3d; }
+  .btn-solid:hover { background: var(--burg-glow); border-color: var(--burg-glow); }
 
   /* SECTION BASE */
   section { padding: 7rem 4rem; }
@@ -177,7 +190,7 @@
   }
 
   /* GALLERY */
-  #gallery { background: var(--white); }
+  #gallery { background: var(--bg); }
   .gallery-filters {
     display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;
   }
@@ -186,7 +199,7 @@
     font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border: 1px solid var(--light);
+    border: 1px solid var(--border);
     background: transparent;
     color: var(--mid);
     cursor: pointer;
@@ -194,10 +207,9 @@
     font-family: 'DM Sans', sans-serif;
   }
   .filter-btn:hover, .filter-btn.active {
-    border-color: var(--charcoal);
-    color: var(--charcoal);
-    background: var(--charcoal);
-    color: var(--white);
+    border-color: var(--burgundy);
+    background: var(--burgundy);
+    color: #f0e0e4;
   }
   .gallery-grid {
     columns: 3;
@@ -239,7 +251,7 @@
   .photo-placeholder {
     width: 100%;
     display: block;
-    background: var(--cream);
+    background: var(--surface2);
     position: relative;
     overflow: hidden;
   }
@@ -250,11 +262,11 @@
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--light);
+    color: var(--dim);
   }
 
   /* ABOUT */
-  #about { background: var(--cream); }
+  #about { background: var(--surface); }
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -267,7 +279,7 @@
   .about-img {
     width: 100%;
     aspect-ratio: 4/5;
-    background: var(--light);
+    background: var(--surface2);
     display: block;
     position: relative;
     overflow: hidden;
@@ -279,14 +291,15 @@
     font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.2);
+    color: var(--dim);
   }
   .about-img-accent {
     position: absolute;
     bottom: -1.5rem; right: -1.5rem;
     width: 60%;
     aspect-ratio: 1;
-    background: var(--charcoal);
+    background: var(--burgundy);
+    opacity: 0.18;
     z-index: -1;
   }
   .about-text p { color: var(--mid); margin-bottom: 1.25rem; }
@@ -299,18 +312,19 @@
     font-weight: 300;
     line-height: 1;
     display: block;
+    color: var(--burg-glow);
   }
   .stat-label {
     font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--mid);
+    color: var(--dim);
     margin-top: 0.3rem;
     display: block;
   }
 
   /* PRICING */
-  #pricing { background: var(--white); }
+  #pricing { background: var(--bg); }
   .pricing-intro {
     max-width: 540px;
     color: var(--mid);
@@ -321,24 +335,24 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5px;
-    background: var(--light);
-    border: 1.5px solid var(--light);
+    background: var(--border);
+    border: 1.5px solid var(--border);
   }
   .pricing-card {
-    background: var(--white);
+    background: var(--surface);
     padding: 2.5rem 2rem;
     position: relative;
   }
   .pricing-card.featured {
-    background: var(--charcoal);
-    color: var(--white);
+    background: var(--burgundy);
+    color: #f0e0e4;
   }
   .pricing-badge {
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    background: rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
     padding: 0.3rem 0.8rem;
     display: inline-block;
     margin-bottom: 1.5rem;
@@ -363,27 +377,27 @@
     color: var(--mid);
     margin-bottom: 2rem;
   }
-  .pricing-card.featured .pricing-unit { color: rgba(255,255,255,0.5); }
+  .pricing-card.featured .pricing-unit { color: rgba(255,220,220,0.6); }
   .pricing-features { list-style: none; margin-bottom: 2.5rem; }
   .pricing-features li {
     font-size: 14px;
     color: var(--mid);
     padding: 0.6rem 0;
-    border-bottom: 1px solid var(--cream);
+    border-bottom: 1px solid var(--border);
     display: flex; align-items: center; gap: 0.75rem;
   }
   .pricing-card.featured .pricing-features li {
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,220,220,0.75);
     border-bottom-color: rgba(255,255,255,0.1);
   }
   .pricing-features li::before {
     content: '';
-    width: 5px; height: 5px;
-    background: var(--light);
+    width: 4px; height: 4px;
+    background: var(--burg-soft);
     border-radius: 50%;
     flex-shrink: 0;
   }
-  .pricing-card.featured .pricing-features li::before { background: rgba(255,255,255,0.3); }
+  .pricing-card.featured .pricing-features li::before { background: rgba(255,200,200,0.5); }
   .pricing-btn {
     display: block;
     text-align: center;
@@ -392,7 +406,7 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1px solid var(--charcoal);
+    border: 1px solid var(--border);
     color: var(--charcoal);
     transition: all 0.2s;
     cursor: pointer;
@@ -400,15 +414,15 @@
     font-family: 'DM Sans', sans-serif;
     width: 100%;
   }
-  .pricing-btn:hover { background: var(--charcoal); color: var(--white); }
+  .pricing-btn:hover { background: var(--burgundy); border-color: var(--burgundy); color: #f0e0e4; }
   .pricing-card.featured .pricing-btn {
-    border-color: var(--white);
-    color: var(--white);
+    border-color: rgba(255,255,255,0.4);
+    color: #f0e0e4;
   }
-  .pricing-card.featured .pricing-btn:hover { background: var(--white); color: var(--charcoal); }
+  .pricing-card.featured .pricing-btn:hover { background: rgba(255,255,255,0.15); }
 
   /* CONTACT */
-  #contact { background: var(--cream); }
+  #contact { background: var(--surface); }
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
@@ -416,14 +430,12 @@
     align-items: start;
   }
   .contact-info p { color: var(--mid); margin-bottom: 2rem; }
-  .contact-detail {
-    margin-bottom: 1rem;
-  }
+  .contact-detail { margin-bottom: 1rem; }
   .contact-detail-label {
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--mid);
+    color: var(--dim);
     display: block;
     margin-bottom: 0.2rem;
   }
@@ -435,13 +447,13 @@
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--mid);
+    color: var(--dim);
   }
   .form-group input,
   .form-group select,
   .form-group textarea {
-    border: 1px solid var(--light);
-    background: var(--white);
+    border: 1px solid var(--border);
+    background: var(--surface2);
     padding: 0.75rem 1rem;
     font-size: 14px;
     font-family: 'DM Sans', sans-serif;
@@ -453,7 +465,8 @@
   }
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--charcoal); }
+  .form-group textarea:focus { border-color: var(--burgundy); }
+  .form-group select option { background: var(--surface2); }
   .form-group textarea { min-height: 130px; }
   .form-submit { margin-top: 0.5rem; }
 
@@ -461,13 +474,13 @@
   footer {
     padding: 2.5rem 4rem;
     display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid var(--light);
-    background: var(--white);
+    border-top: 1px solid var(--border);
+    background: var(--bg);
   }
-  .footer-copy { font-size: 13px; color: var(--mid); }
+  .footer-copy { font-size: 13px; color: var(--dim); }
   .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a { font-size: 13px; color: var(--mid); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--charcoal); }
+  .footer-links a { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--burg-glow); }
 
   /* LIGHTBOX */
   .lightbox {
@@ -760,7 +773,7 @@
       <div class="form-submit">
         <button type="submit" class="btn btn-solid" style="border: none; width: 100%; font-family: 'DM Sans', sans-serif; font-weight: 300; padding: 1rem;">Send Message</button>
       </div>
-      <p id="form-success" style="display:none; font-size:13px; color: #555; text-align:center; margin-top: 0.5rem; letter-spacing: 0.05em;">Thank you — I'll be in touch soon.</p>
+      <p id="form-success" style="display:none; font-size:13px; color: var(--mid); text-align:center; margin-top: 0.5rem; letter-spacing: 0.05em;">Thank you — I'll be in touch soon.</p>
     </form>
   </div>
 </section>
@@ -812,4 +825,3 @@
 
   function handleSubmit(e) {
     e.preventDefault();
-   

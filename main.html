@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f7f5f0;
+    --white: #ffffff;
+    --charcoal: #1a1a1a;
+    --mid: #6b6b6b;
+    --light: #d4d0c8;
+    --accent: #2c2c2c;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--white);
+    color: var(--charcoal);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: flex-end;
+    padding: 0 4rem 5rem;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(8rem, 18vw, 18rem);
+    font-weight: 300;
+    color: rgba(0,0,0,0.04);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-content { position: relative; max-width: 680px; }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--mid);
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--charcoal);
+    color: var(--charcoal);
+    background: transparent;
+    transition: background 0.25s, color 0.25s;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--charcoal); color: var(--white); }
+  .btn-solid {
+    background: var(--charcoal);
+    color: var(--white);
+  }
+  .btn-solid:hover { background: #3d3d3d; }
+
+  /* SECTION BASE */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* GALLERY */
+  #gallery { background: var(--white); }
+  .gallery-filters {
+    display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 0.5rem 1.4rem;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--light);
+    background: transparent;
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--charcoal);
+    color: var(--charcoal);
+    background: var(--charcoal);
+    color: var(--white);
+  }
+  .gallery-grid {
+    columns: 3;
+    column-gap: 16px;
+  }
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.03); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(20,20,20,0);
+    transition: background 0.3s;
+    display: flex; align-items: flex-end;
+    padding: 1.2rem;
+  }
+  .gallery-item:hover .gallery-overlay { background: rgba(20,20,20,0.35); }
+  .gallery-caption {
+    color: white;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.3s 0.05s;
+  }
+  .gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
+
+  /* placeholder images using CSS */
+  .photo-placeholder {
+    width: 100%;
+    display: block;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-placeholder::after {
+    content: attr(data-label);
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  /* ABOUT */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--light);
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-img::after {
+    content: 'Your photo here';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.2);
+  }
+  .about-img-accent {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    width: 60%;
+    aspect-ratio: 1;
+    background: var(--charcoal);
+    z-index: -1;
+  }
+  .about-text p { color: var(--mid); margin-bottom: 1.25rem; }
+  .about-stats {
+    display: flex; gap: 3rem; margin-top: 2.5rem;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* PRICING */
+  #pricing { background: var(--white); }
+  .pricing-intro {
+    max-width: 540px;
+    color: var(--mid);
+    margin-bottom: 3.5rem;
+    margin-top: -1rem;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--light);
+    border: 1.5px solid var(--light);
+  }
+  .pricing-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    position: relative;
+  }
+  .pricing-card.featured {
+    background: var(--charcoal);
+    color: var(--white);
+  }
+  .pricing-badge {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    padding: 0.3rem 0.8rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+  .pricing-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+  .pricing-price {
+    font-size: 2.4rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+  .pricing-price sup { font-size: 1.1rem; vertical-align: top; margin-top: 0.5rem; }
+  .pricing-unit {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 2rem;
+  }
+  .pricing-card.featured .pricing-unit { color: rgba(255,255,255,0.5); }
+  .pricing-features { list-style: none; margin-bottom: 2.5rem; }
+  .pricing-features li {
+    font-size: 14px;
+    color: var(--mid);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--cream);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .pricing-card.featured .pricing-features li {
+    color: rgba(255,255,255,0.65);
+    border-bottom-color: rgba(255,255,255,0.1);
+  }
+  .pricing-features li::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--light);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .pricing-card.featured .pricing-features li::before { background: rgba(255,255,255,0.3); }
+  .pricing-btn {
+    display: block;
+    text-align: center;
+    padding: 0.85rem;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--charcoal);
+    color: var(--charcoal);
+    transition: all 0.2s;
+    cursor: pointer;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    width: 100%;
+  }
+  .pricing-btn:hover { background: var(--charcoal); color: var(--white); }
+  .pricing-card.featured .pricing-btn {
+    border-color: var(--white);
+    color: var(--white);
+  }
+  .pricing-card.featured .pricing-btn:hover { background: var(--white); color: var(--charcoal); }
+
+  /* CONTACT */
+  #contact { background: var(--cream); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .contact-info p { color: var(--mid); margin-bottom: 2rem; }
+  .contact-detail {
+    margin-bottom: 1rem;
+  }
+  .contact-detail-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .contact-detail-val { font-size: 15px; color: var(--charcoal); }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border: 1px solid var(--light);
+    background: var(--white);
+    padding: 0.75rem 1rem;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--charcoal); }
+  .form-group textarea { min-height: 130px; }
+  .form-submit { margin-top: 0.5rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--light);
+    background: var(--white);
+  }
+  .footer-copy { font-size: 13px; color: var(--mid); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 13px; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--charcoal); }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(10,10,10,0.93);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+  .lightbox-close {
+    position: fixed; top: 2rem; right: 2.5rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 2rem; cursor: pointer; background: none; border: none;
+    line-height: 1;
+  }
+  .lightbox-close:hover { color: white; }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .gallery-grid { columns: 2; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .about-img-accent { display: none; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 580px) {
+    .gallery-grid { columns: 1; }
+    .nav-links { display: none; }
+    .about-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Catya's Photography</a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Senior Photos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">Light</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Photography Portfolio</p>
+    <h1 class="hero-title">Moments<br>made <em>permanent.</em></h1>
+    <p class="hero-sub">Robotics, architecture, landscape, and senior portrait photography — shot with intention.</p>
+    <a href="#gallery" class="btn">View the Work</a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">The Portfolio</h2>
+
+  <div class="gallery-filters">
+    <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+    <button class="filter-btn" onclick="filterGallery('robotics', this)">Robotics</button>
+    <button class="filter-btn" onclick="filterGallery('architecture', this)">Architecture</button>
+    <button class="filter-btn" onclick="filterGallery('landscape', this)">Landscape</button>
+    <button class="filter-btn" onclick="filterGallery('seniors', this)">Senior Portraits</button>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Robotics -->
+    <div class="gallery-item" data-cat="robotics" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 320px;" data-label="Robotics — 01"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Robotics</span></div>
+    </div>
+    <!-- Architecture -->
+    <div class="gallery-item" data-cat="architecture" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 420px;" data-label="Architecture — 01"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Architecture</span></div>
+    </div>
+    <!-- Landscape -->
+    <div class="gallery-item" data-cat="landscape" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 260px;" data-label="Landscape — 01"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Landscape</span></div>
+    </div>
+    <!-- Seniors -->
+    <div class="gallery-item" data-cat="seniors" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 380px;" data-label="Senior Portrait — 01"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Senior Portrait</span></div>
+    </div>
+    <!-- more... -->
+    <div class="gallery-item" data-cat="landscape" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 300px;" data-label="Landscape — 02"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Landscape</span></div>
+    </div>
+    <div class="gallery-item" data-cat="robotics" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 350px;" data-label="Robotics — 02"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Robotics</span></div>
+    </div>
+    <div class="gallery-item" data-cat="seniors" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 440px;" data-label="Senior Portrait — 02"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Senior Portrait</span></div>
+    </div>
+    <div class="gallery-item" data-cat="architecture" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 290px;" data-label="Architecture — 02"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Architecture</span></div>
+    </div>
+    <div class="gallery-item" data-cat="landscape" onclick="openLightbox(this)">
+      <div class="photo-placeholder" style="height: 360px;" data-label="Landscape — 03"></div>
+      <div class="gallery-overlay"><span class="gallery-caption">Landscape</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img"></div>
+      <div class="about-img-accent"></div>
+    </div>
+    <div class="about-text">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Behind<br>the lens</h2>
+      <p>Write a sentence or two about yourself and how you got into photography. Keep it personal — let people know who you are.</p>
+      <p>Describe your approach to the craft: what draws you to robotics, architecture, landscapes, and capturing senior portraits. What do you look for in a shot?</p>
+      <p>Add any other details — where you're based, how long you've been shooting, gear you love, or what inspires you.</p>
+      <div class="about-stats">
+        <div>
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Years shooting</span>
+        </div>
+        <div>
+          <span class="stat-num">200+</span>
+          <span class="stat-label">Sessions completed</span>
+        </div>
+        <div>
+          <span class="stat-num">4</span>
+          <span class="stat-label">Specialties</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENIOR PRICING -->
+<section id="pricing">
+  <p class="section-label">Senior Portraits</p>
+  <h2 class="section-title">Pricing</h2>
+  <p class="pricing-intro">Every senior session is crafted to feel effortless and personal. Choose the package that fits you best — all include fully edited digital images.</p>
+
+  <div class="pricing-grid">
+    <!-- Essential -->
+    <div class="pricing-card">
+      <p class="pricing-name">Essential</p>
+      <p class="pricing-price"><sup>$</sup>249</p>
+      <p class="pricing-unit">Per session</p>
+      <ul class="pricing-features">
+        <li>1-hour session</li>
+        <li>1 location</li>
+        <li>2 outfit changes</li>
+        <li>20 edited digital images</li>
+        <li>Online gallery delivery</li>
+      </ul>
+      <a href="#contact" class="pricing-btn">Book this package</a>
+    </div>
+
+    <!-- Signature — featured -->
+    <div class="pricing-card featured">
+      <span class="pricing-badge">Most Popular</span>
+      <p class="pricing-name">Signature</p>
+      <p class="pricing-price"><sup>$</sup>399</p>
+      <p class="pricing-unit">Per session</p>
+      <ul class="pricing-features">
+        <li>2-hour session</li>
+        <li>2 locations</li>
+        <li>Unlimited outfit changes</li>
+        <li>50 edited digital images</li>
+        <li>Online gallery + USB drive</li>
+        <li>1 canvas print included</li>
+      </ul>
+      <a href="#contact" class="pricing-btn">Book this package</a>
+    </div>
+
+    <!-- Premium -->
+    <div class="pricing-card">
+      <p class="pricing-name">Premium</p>
+      <p class="pricing-price"><sup>$</sup>599</p>
+      <p class="pricing-unit">Per session</p>
+      <ul class="pricing-features">
+        <li>Half-day session (4 hrs)</li>
+        <li>3+ locations</li>
+        <li>Unlimited outfit changes</li>
+        <li>100 edited digital images</li>
+        <li>Online gallery + USB drive</li>
+        <li>3 premium prints</li>
+        <li>Priority editing (48 hrs)</li>
+      </ul>
+      <a href="#contact" class="pricing-btn">Book this package</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Let's work<br>together</h2>
+      <p>Whether you're booking a senior session, have a commercial project in mind, or just want to say hello — I'd love to hear from you.</p>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Email</span>
+        <span class="contact-detail-val">hello@yourname.com</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Phone</span>
+        <span class="contact-detail-val">(555) 000-0000</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">Based in</span>
+        <span class="contact-detail-val">Your City, State</span>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First name</label>
+          <input type="text" id="fname" placeholder="Jane" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last name</label>
+          <input type="text" id="lname" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="jane@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="interest">I'm interested in</label>
+        <select id="interest">
+          <option value="">Select a service...</option>
+          <option>Senior Portrait — Essential ($249)</option>
+          <option>Senior Portrait — Signature ($399)</option>
+          <option>Senior Portrait — Premium ($599)</option>
+          <option>Architecture Photography</option>
+          <option>Landscape Photography</option>
+          <option>Robotics / Commercial</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell me a bit about what you have in mind..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn btn-solid" style="border: none; width: 100%; font-family: 'DM Sans', sans-serif; font-weight: 300; padding: 1rem;">Send Message</button>
+      </div>
+      <p id="form-success" style="display:none; font-size:13px; color: #555; text-align:center; margin-top: 0.5rem; letter-spacing: 0.05em;">Thank you — I'll be in touch soon.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">&copy; 2025 Your Name Photography</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">Pinterest</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    if (img) {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'none';
+    }, 5000);
+  }
+</script>
+</body>
+</html>

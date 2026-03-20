@@ -213,7 +213,7 @@
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Catya Photography</a>
+  <a href="#" class="nav-logo">Catya</a>
   <ul class="nav-links">
     <li><a href="#gallery" class="active">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -336,10 +336,9 @@
 </section>
 
 <footer>
-  <p class="footer-copy">&copy; Catya Photography</p>
+  <p class="footer-copy">&copy; Catya's Photography</p>
   <div class="footer-links">
     <a href="#">Instagram</a>
-    <a href="#">Pinterest</a>
     <button class="admin-trigger" onclick="openAdmin()">Admin</button>
   </div>
 </footer>
@@ -633,3 +632,13 @@
         <img class="apl-thumb" src="${p.url}" alt="">
         <div class="apl-info">
           <span class="apl-cat">${p.category}</span>
+          <span class="apl-cap">${p.caption || 'No caption'}</span>
+        </div>
+        <button class="apl-del" onclick="deletePhoto(event,${i})">&#x2715;</button>
+      </li>`).join('');
+  }
+
+  init();
+</script>
+</body>
+</html>

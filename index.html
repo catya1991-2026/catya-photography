@@ -8,496 +8,184 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg:        #09070a;
-    --surface:   #110d10;
-    --surface2:  #1a1318;
-    --border:    #2b1e24;
-    --charcoal:  #ddd0c8;
-    --mid:       #7a6a66;
-    --dim:       #4a3c3a;
-    --burgundy:  #8b1f38;
-    --burg-soft: #5c1427;
-    --burg-glow: #a8284a;
-    --rose:      #f0dde2;
-    --cream:     #1a1318;
-    --white:     #09070a;
-    --light:     #2b1e24;
-    --accent:    #8b1f38;
+    --bg: #09070a; --surface: #110d10; --surface2: #1a1318;
+    --border: #2b1e24; --charcoal: #ddd0c8; --mid: #7a6a66;
+    --dim: #4a3c3a; --burgundy: #8b1f38; --burg-soft: #5c1427;
+    --burg-glow: #a8284a; --rose: #f0dde2;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    background: var(--bg);
-    color: var(--charcoal);
-    font-size: 15px;
-    line-height: 1.7;
-  }
+  body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: var(--bg); color: var(--charcoal); font-size: 15px; line-height: 1.7; }
   ::selection { background: var(--burgundy); color: var(--rose); }
-
   h1, h2, h3 { color: var(--charcoal); }
 
   /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.25rem 4rem;
-    background: rgba(14,10,12,0.97);
-    backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.35rem;
-    font-weight: 300;
-    letter-spacing: 0.03em;
-    color: var(--charcoal);
-    text-decoration: none;
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 4rem; background: rgba(9,7,10,0.97); backdrop-filter: blur(8px); border-bottom: 0.5px solid var(--border); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 300; letter-spacing: 0.03em; color: var(--charcoal); text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 11px;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--mid);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .nav-links a { font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; cursor: pointer; }
   .nav-links a:hover, .nav-links a.active { color: var(--burg-glow); }
 
   /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: flex-end;
-    padding: 0 4rem 5rem;
-    background: var(--surface);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg-text {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(8rem, 18vw, 18rem);
-    font-weight: 300;
-    color: rgba(140,31,56,0.07);
-    letter-spacing: -0.02em;
-    white-space: nowrap;
-    pointer-events: none;
-    user-select: none;
-  }
+  .hero { min-height: 100vh; display: flex; align-items: flex-end; padding: 0 4rem 5rem; background: var(--surface); position: relative; overflow: hidden; }
+  .hero-bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Cormorant Garamond', serif; font-size: clamp(8rem,18vw,18rem); font-weight: 300; color: rgba(140,31,56,0.07); letter-spacing: -0.02em; white-space: nowrap; pointer-events: none; user-select: none; }
   .hero-content { position: relative; max-width: 680px; }
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 1.25rem;
-  }
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.0;
-    letter-spacing: -0.01em;
-    margin-bottom: 1.25rem;
-  }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); margin-bottom: 1.25rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,6vw,5.5rem); font-weight: 300; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
   .hero-title em { font-style: italic; }
-  .hero-sub {
-    font-size: 14px;
-    color: var(--mid);
-    max-width: 380px;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
+  .hero-sub { font-size: 14px; color: var(--mid); max-width: 380px; margin-bottom: 2rem; line-height: 1.6; }
 
   /* CATEGORY STRIP */
-  .category-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--border);
-    background: var(--bg);
-  }
-  .cat-card {
-    padding: 2rem 2.5rem;
-    border-right: 1px solid var(--border);
-    transition: background 0.2s;
-    cursor: default;
-  }
+  .category-strip { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--border); background: var(--bg); }
+  .cat-card { padding: 2rem 2.5rem; border-right: 1px solid var(--border); transition: background 0.2s; }
   .cat-card:last-child { border-right: none; }
   .cat-card:hover { background: var(--surface); }
-  .cat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--burg-soft);
-    line-height: 1;
-    margin-bottom: 0.6rem;
-  }
-  .cat-name {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--charcoal);
-    margin-bottom: 0.3rem;
-  }
-  .cat-desc {
-    font-size: 12px;
-    color: var(--mid);
-    line-height: 1.5;
-  }
-  .btn {
-    display: inline-block;
-    padding: 0.85rem 2.2rem;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--burgundy);
-    color: var(--charcoal);
-    background: transparent;
-    transition: background 0.25s, color 0.25s, border-color 0.25s;
-    cursor: pointer;
-  }
-  .btn:hover { background: var(--burgundy); color: #f0e0e4; border-color: var(--burgundy); }
-  .btn-solid {
-    background: var(--burgundy);
-    color: #f0e0e4;
-    border-color: var(--burgundy);
-  }
+  .cat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--burg-soft); line-height: 1; margin-bottom: 0.6rem; }
+  .cat-name { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--charcoal); margin-bottom: 0.3rem; }
+  .cat-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+  /* BUTTONS */
+  .btn { display: inline-block; padding: 0.85rem 2.2rem; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--burgundy); color: var(--charcoal); background: transparent; transition: all 0.25s; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 300; }
+  .btn:hover { background: var(--burgundy); color: #f0e0e4; }
+  .btn-solid { background: var(--burgundy); color: #f0e0e4; border-color: var(--burgundy); }
   .btn-solid:hover { background: var(--burg-glow); border-color: var(--burg-glow); }
 
-  /* SECTION BASE */
+  /* SECTIONS */
   section { padding: 7rem 4rem; }
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 3rem;
-  }
+  .section-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 1rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,4vw,3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 3rem; }
 
   /* GALLERY */
   #gallery { background: var(--bg); }
-  .gallery-filters {
-    display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;
-  }
-  .filter-btn {
-    padding: 0.5rem 1.4rem;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--mid);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .filter-btn:hover, .filter-btn.active {
-    border-color: var(--burgundy);
-    background: var(--burgundy);
-    color: #f0e0e4;
-  }
-  .gallery-grid {
-    columns: 3;
-    column-gap: 16px;
-  }
-  .gallery-item {
-    break-inside: avoid;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .gallery-item img {
-    width: 100%;
-    display: block;
-    transition: transform 0.5s ease;
-  }
+  .gallery-filters { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .filter-btn { padding: 0.5rem 1.4rem; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--border); background: transparent; color: var(--mid); cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; font-weight: 300; }
+  .filter-btn:hover, .filter-btn.active { border-color: var(--burgundy); background: var(--burgundy); color: #f0e0e4; }
+  .gallery-grid { columns: 3; column-gap: 16px; min-height: 120px; }
+  .gallery-item { break-inside: avoid; margin-bottom: 16px; position: relative; overflow: hidden; cursor: pointer; }
+  .gallery-item img { width: 100%; display: block; transition: transform 0.5s ease; }
   .gallery-item:hover img { transform: scale(1.03); }
-  .gallery-overlay {
-    position: absolute; inset: 0;
-    background: rgba(20,20,20,0);
-    transition: background 0.3s;
-    display: flex; align-items: flex-end;
-    padding: 1.2rem;
-  }
-  .gallery-item:hover .gallery-overlay { background: rgba(20,20,20,0.35); }
-  .gallery-caption {
-    color: white;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: all 0.3s 0.05s;
-  }
+  .gallery-overlay { position: absolute; inset: 0; background: rgba(9,7,10,0); transition: background 0.3s; display: flex; align-items: flex-end; padding: 1.2rem; }
+  .gallery-item:hover .gallery-overlay { background: rgba(9,7,10,0.5); }
+  .gallery-caption { color: var(--rose); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0; transform: translateY(6px); transition: all 0.3s 0.05s; }
   .gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
-
-  /* placeholder images using CSS */
-  .photo-placeholder {
-    width: 100%;
-    display: block;
-    background: var(--surface2);
-    position: relative;
-    overflow: hidden;
-  }
-  .photo-placeholder::after {
-    content: attr(data-label);
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
+  .gallery-delete { position: absolute; top: 8px; right: 8px; background: rgba(9,7,10,0.7); border: 0.5px solid var(--border); color: var(--mid); width: 26px; height: 26px; font-size: 13px; cursor: pointer; display: none; align-items: center; justify-content: center; transition: all 0.2s; }
+  .gallery-delete:hover { background: var(--burgundy); color: var(--rose); border-color: var(--burgundy); }
+  body.admin-on .gallery-item:hover .gallery-delete { display: flex; }
+  .gallery-empty { color: var(--dim); font-size: 13px; letter-spacing: 0.08em; padding: 3rem 0; }
 
   /* ABOUT */
   #about { background: var(--surface); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-  }
-  .about-img-wrap {
-    position: relative;
-  }
-  .about-img {
-    width: 100%;
-    aspect-ratio: 4/5;
-    background: var(--surface2);
-    display: block;
-    position: relative;
-    overflow: hidden;
-  }
-  .about-img::after {
-    content: 'Your photo here';
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
-  .about-img-accent {
-    position: absolute;
-    bottom: -1.5rem; right: -1.5rem;
-    width: 60%;
-    aspect-ratio: 1;
-    background: var(--burgundy);
-    opacity: 0.18;
-    z-index: -1;
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .about-img-wrap { position: relative; }
+  .about-img { width: 100%; aspect-ratio: 4/5; background: var(--surface2); position: relative; overflow: hidden; }
+  .about-img::after { content: 'Your photo here'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+  .about-img-accent { position: absolute; bottom: -1.5rem; right: -1.5rem; width: 60%; aspect-ratio: 1; background: var(--burgundy); opacity: 0.18; z-index: -1; }
   .about-text p { color: var(--mid); margin-bottom: 1.25rem; }
-  .about-stats {
-    display: flex; gap: 3rem; margin-top: 2.5rem;
-  }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.8rem;
-    font-weight: 300;
-    line-height: 1;
-    display: block;
-    color: var(--burg-glow);
-  }
-  .stat-label {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-top: 0.3rem;
-    display: block;
-  }
+  .about-stats { display: flex; gap: 3rem; margin-top: 2.5rem; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; line-height: 1; display: block; color: var(--burg-glow); }
+  .stat-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-top: 0.3rem; display: block; }
 
   /* PRICING */
   #pricing { background: var(--bg); }
-  .pricing-intro {
-    max-width: 540px;
-    color: var(--mid);
-    margin-bottom: 3.5rem;
-    margin-top: -1rem;
-  }
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px;
-    background: var(--border);
-    border: 1.5px solid var(--border);
-  }
-  .pricing-card {
-    background: var(--surface);
-    padding: 2.5rem 2rem;
-    position: relative;
-  }
-  .pricing-card.featured {
-    background: var(--burgundy);
-    color: #f0e0e4;
-  }
-  .pricing-badge {
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    background: rgba(255,255,255,0.12);
-    color: rgba(255,255,255,0.75);
-    padding: 0.3rem 0.8rem;
-    display: inline-block;
-    margin-bottom: 1.5rem;
-  }
-  .pricing-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    font-weight: 300;
-    margin-bottom: 0.5rem;
-  }
-  .pricing-price {
-    font-size: 2.4rem;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.25rem;
-  }
+  .pricing-intro { max-width: 540px; color: var(--mid); margin-bottom: 3.5rem; margin-top: -1rem; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); }
+  .pricing-card { background: var(--surface); padding: 2.5rem 2rem; }
+  .pricing-card.featured { background: var(--burgundy); }
+  .pricing-badge { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.75); padding: 0.3rem 0.8rem; display: inline-block; margin-bottom: 1.5rem; }
+  .pricing-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 0.5rem; }
+  .pricing-price { font-size: 2.4rem; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 0.25rem; }
   .pricing-price sup { font-size: 1.1rem; vertical-align: top; margin-top: 0.5rem; }
-  .pricing-unit {
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 2rem;
-  }
+  .pricing-unit { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 2rem; }
   .pricing-card.featured .pricing-unit { color: rgba(255,220,220,0.6); }
   .pricing-features { list-style: none; margin-bottom: 2.5rem; }
-  .pricing-features li {
-    font-size: 14px;
-    color: var(--mid);
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .pricing-card.featured .pricing-features li {
-    color: rgba(255,220,220,0.75);
-    border-bottom-color: rgba(255,255,255,0.1);
-  }
-  .pricing-features li::before {
-    content: '';
-    width: 4px; height: 4px;
-    background: var(--burg-soft);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  .pricing-features li { font-size: 14px; color: var(--mid); padding: 0.6rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.75rem; }
+  .pricing-card.featured .pricing-features li { color: rgba(255,220,220,0.75); border-bottom-color: rgba(255,255,255,0.1); }
+  .pricing-features li::before { content: ''; width: 4px; height: 4px; background: var(--burg-soft); border-radius: 50%; flex-shrink: 0; }
   .pricing-card.featured .pricing-features li::before { background: rgba(255,200,200,0.5); }
-  .pricing-btn {
-    display: block;
-    text-align: center;
-    padding: 0.85rem;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    color: var(--charcoal);
-    transition: all 0.2s;
-    cursor: pointer;
-    background: transparent;
-    font-family: 'DM Sans', sans-serif;
-    width: 100%;
-  }
+  .pricing-btn { display: block; text-align: center; padding: 0.85rem; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); color: var(--charcoal); transition: all 0.2s; cursor: pointer; background: transparent; font-family: 'DM Sans', sans-serif; font-weight: 300; width: 100%; }
   .pricing-btn:hover { background: var(--burgundy); border-color: var(--burgundy); color: #f0e0e4; }
-  .pricing-card.featured .pricing-btn {
-    border-color: rgba(255,255,255,0.4);
-    color: #f0e0e4;
-  }
+  .pricing-card.featured .pricing-btn { border-color: rgba(255,255,255,0.4); color: #f0e0e4; }
   .pricing-card.featured .pricing-btn:hover { background: rgba(255,255,255,0.15); }
 
   /* CONTACT */
   #contact { background: var(--surface); }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 6rem;
-    align-items: start;
-  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: start; }
   .contact-info p { color: var(--mid); margin-bottom: 2rem; }
   .contact-detail { margin-bottom: 1rem; }
-  .contact-detail-label {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--dim);
-    display: block;
-    margin-bottom: 0.2rem;
-  }
+  .contact-detail-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); display: block; margin-bottom: 0.2rem; }
   .contact-detail-val { font-size: 15px; color: var(--charcoal); }
   .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
   .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group label {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--dim);
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    padding: 0.75rem 1rem;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    color: var(--charcoal);
-    outline: none;
-    transition: border-color 0.2s;
-    resize: vertical;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--burgundy); }
+  .form-group label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); }
+  .form-group input, .form-group select, .form-group textarea { border: 1px solid var(--border); background: var(--surface2); padding: 0.75rem 1rem; font-size: 14px; font-family: 'DM Sans', sans-serif; font-weight: 300; color: var(--charcoal); outline: none; transition: border-color 0.2s; resize: vertical; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--burgundy); }
   .form-group select option { background: var(--surface2); }
   .form-group textarea { min-height: 130px; }
-  .form-submit { margin-top: 0.5rem; }
 
   /* FOOTER */
-  footer {
-    padding: 2.5rem 4rem;
-    display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid var(--border);
-    background: var(--bg);
-  }
+  footer { padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); background: var(--bg); }
   .footer-copy { font-size: 13px; color: var(--dim); }
-  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links { display: flex; gap: 1.5rem; align-items: center; }
   .footer-links a { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--burg-glow); }
+  .admin-trigger { font-size: 11px; color: var(--dim); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; opacity: 0.35; transition: opacity 0.2s, color 0.2s; letter-spacing: 0.06em; }
+  .admin-trigger:hover { opacity: 1; color: var(--burg-glow); }
 
   /* LIGHTBOX */
-  .lightbox {
-    display: none;
-    position: fixed; inset: 0; z-index: 999;
-    background: rgba(10,10,10,0.93);
-    align-items: center; justify-content: center;
-  }
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(9,7,10,0.96); align-items: center; justify-content: center; }
   .lightbox.open { display: flex; }
   .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
-  .lightbox-close {
-    position: fixed; top: 2rem; right: 2.5rem;
-    color: rgba(255,255,255,0.7);
-    font-size: 2rem; cursor: pointer; background: none; border: none;
-    line-height: 1;
-  }
-  .lightbox-close:hover { color: white; }
+  .lightbox-close { position: fixed; top: 2rem; right: 2.5rem; color: rgba(255,255,255,0.4); font-size: 2rem; cursor: pointer; background: none; border: none; line-height: 1; transition: color 0.2s; }
+  .lightbox-close:hover { color: var(--rose); }
+
+  /* ADMIN OVERLAY */
+  .admin-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(9,7,10,0.97); align-items: center; justify-content: center; }
+  .admin-overlay.open { display: flex; }
+  .admin-panel { background: var(--surface); border: 1px solid var(--border); width: 100%; max-width: 500px; padding: 2.5rem; position: relative; max-height: 92vh; overflow-y: auto; }
+  .admin-x { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; color: var(--mid); font-size: 1.5rem; cursor: pointer; line-height: 1; transition: color 0.2s; }
+  .admin-x:hover { color: var(--rose); }
+  .admin-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--charcoal); margin-bottom: 0.25rem; }
+  .admin-sub { font-size: 12px; color: var(--dim); letter-spacing: 0.06em; margin-bottom: 2rem; }
+  .afield { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+  .afield label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); }
+  .afield input, .afield select { border: 1px solid var(--border); background: var(--surface2); padding: 0.7rem 1rem; font-size: 14px; font-family: 'DM Sans', sans-serif; font-weight: 300; color: var(--charcoal); outline: none; transition: border-color 0.2s; width: 100%; }
+  .afield input:focus, .afield select:focus { border-color: var(--burgundy); }
+  .afield select option { background: var(--surface2); }
+
+  /* FILE DROP ZONE */
+  .drop-zone { border: 1px dashed var(--border); background: var(--surface2); padding: 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; position: relative; margin-bottom: 1.1rem; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--burgundy); background: rgba(139,31,56,0.06); }
+  .drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .drop-zone-icon { font-size: 2rem; margin-bottom: 0.5rem; color: var(--burg-soft); }
+  .drop-zone-text { font-size: 13px; color: var(--mid); line-height: 1.5; }
+  .drop-zone-text strong { color: var(--charcoal); font-weight: 400; }
+  .drop-zone-preview { display: none; margin-top: 0.75rem; }
+  .drop-zone-preview img { max-height: 120px; max-width: 100%; border: 1px solid var(--border); }
+  .drop-zone-filename { font-size: 12px; color: var(--burg-glow); margin-top: 0.4rem; letter-spacing: 0.04em; }
+
+  /* PROGRESS BAR */
+  .upload-progress { display: none; margin-bottom: 1rem; }
+  .progress-bar { height: 2px; background: var(--border); width: 100%; }
+  .progress-fill { height: 100%; background: var(--burgundy); width: 0%; transition: width 0.3s; }
+  .progress-label { font-size: 11px; color: var(--mid); letter-spacing: 0.08em; margin-top: 0.4rem; }
+
+  .amsg { font-size: 12px; margin-bottom: 1rem; display: none; letter-spacing: 0.04em; }
+  .amsg.ok { color: #7aab6a; }
+  .amsg.err { color: #c0394a; }
+  .adivider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+  /* PHOTO LIST IN ADMIN */
+  .admin-photo-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; max-height: 220px; overflow-y: auto; }
+  .apl-item { display: flex; align-items: center; gap: 10px; padding: 0.5rem 0.75rem; background: var(--surface2); border: 1px solid var(--border); }
+  .apl-thumb { width: 40px; height: 40px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); }
+  .apl-info { flex: 1; overflow: hidden; }
+  .apl-cat { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--burg-glow); }
+  .apl-cap { font-size: 12px; color: var(--mid); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .apl-del { background: none; border: none; color: var(--dim); font-size: 1rem; cursor: pointer; flex-shrink: 0; transition: color 0.2s; padding: 0 4px; }
+  .apl-del:hover { color: #c0394a; }
+  .admin-sign-out { background: none; border: none; font-size: 11px; color: var(--dim); cursor: pointer; letter-spacing: 0.08em; font-family: 'DM Sans', sans-serif; transition: color 0.2s; float: right; margin-top: 5px; }
+  .admin-sign-out:hover { color: var(--rose); }
 
   /* MOBILE */
   @media (max-width: 900px) {
@@ -505,9 +193,9 @@
     .nav-links { gap: 1.5rem; }
     section { padding: 5rem 1.5rem; }
     .hero { padding: 0 1.5rem 4rem; }
-    .category-strip { grid-template-columns: repeat(2, 1fr); }
+    .category-strip { grid-template-columns: repeat(2,1fr); }
     .cat-card:nth-child(2) { border-right: none; }
-    .cat-card:nth-child(1), .cat-card:nth-child(2) { border-bottom: 1px solid var(--light); }
+    .cat-card:nth-child(1), .cat-card:nth-child(2) { border-bottom: 1px solid var(--border); }
     .gallery-grid { columns: 2; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .pricing-grid { grid-template-columns: 1fr; }
@@ -524,9 +212,8 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Catya's Photography</a>
+  <a href="#" class="nav-logo">Your Name</a>
   <ul class="nav-links">
     <li><a href="#gallery" class="active">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -535,7 +222,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg-text">Light</div>
   <div class="hero-content">
@@ -546,89 +232,28 @@
   </div>
 </section>
 
-<!-- CATEGORY STRIP -->
 <div class="category-strip">
-  <div class="cat-card">
-    <div class="cat-num">01</div>
-    <div class="cat-name">Robotics</div>
-    <div class="cat-desc">Precision, form, and motion</div>
-  </div>
-  <div class="cat-card">
-    <div class="cat-num">02</div>
-    <div class="cat-name">Architecture</div>
-    <div class="cat-desc">Structure and negative space</div>
-  </div>
-  <div class="cat-card">
-    <div class="cat-num">03</div>
-    <div class="cat-name">Landscape</div>
-    <div class="cat-desc">Light across open terrain</div>
-  </div>
-  <div class="cat-card">
-    <div class="cat-num">04</div>
-    <div class="cat-name">Seniors</div>
-    <div class="cat-desc">Portraits for this chapter</div>
-  </div>
+  <div class="cat-card"><div class="cat-num">01</div><div class="cat-name">Robotics</div><div class="cat-desc">Precision, form, and motion</div></div>
+  <div class="cat-card"><div class="cat-num">02</div><div class="cat-name">Architecture</div><div class="cat-desc">Structure and negative space</div></div>
+  <div class="cat-card"><div class="cat-num">03</div><div class="cat-name">Landscape</div><div class="cat-desc">Light across open terrain</div></div>
+  <div class="cat-card"><div class="cat-num">04</div><div class="cat-name">Seniors</div><div class="cat-desc">Portraits for this chapter</div></div>
 </div>
 
-<!-- GALLERY -->
 <section id="gallery">
   <p class="section-label">Selected Work</p>
   <h2 class="section-title">The Portfolio</h2>
-
   <div class="gallery-filters">
-    <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
-    <button class="filter-btn" onclick="filterGallery('robotics', this)">Robotics</button>
-    <button class="filter-btn" onclick="filterGallery('architecture', this)">Architecture</button>
-    <button class="filter-btn" onclick="filterGallery('landscape', this)">Landscape</button>
-    <button class="filter-btn" onclick="filterGallery('seniors', this)">Senior Portraits</button>
+    <button class="filter-btn active" onclick="filterGallery('all',this)">All</button>
+    <button class="filter-btn" onclick="filterGallery('robotics',this)">Robotics</button>
+    <button class="filter-btn" onclick="filterGallery('architecture',this)">Architecture</button>
+    <button class="filter-btn" onclick="filterGallery('landscape',this)">Landscape</button>
+    <button class="filter-btn" onclick="filterGallery('seniors',this)">Senior Portraits</button>
   </div>
-
   <div class="gallery-grid" id="galleryGrid">
-    <!-- Robotics -->
-    <div class="gallery-item" data-cat="robotics" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 320px;" data-label="Robotics — 01"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Robotics</span></div>
-    </div>
-    <!-- Architecture -->
-    <div class="gallery-item" data-cat="architecture" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 420px;" data-label="Architecture — 01"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Architecture</span></div>
-    </div>
-    <!-- Landscape -->
-    <div class="gallery-item" data-cat="landscape" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 260px;" data-label="Landscape — 01"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Landscape</span></div>
-    </div>
-    <!-- Seniors -->
-    <div class="gallery-item" data-cat="seniors" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 380px;" data-label="Senior Portrait — 01"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Senior Portrait</span></div>
-    </div>
-    <!-- more... -->
-    <div class="gallery-item" data-cat="landscape" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 300px;" data-label="Landscape — 02"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Landscape</span></div>
-    </div>
-    <div class="gallery-item" data-cat="robotics" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 350px;" data-label="Robotics — 02"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Robotics</span></div>
-    </div>
-    <div class="gallery-item" data-cat="seniors" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 440px;" data-label="Senior Portrait — 02"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Senior Portrait</span></div>
-    </div>
-    <div class="gallery-item" data-cat="architecture" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 290px;" data-label="Architecture — 02"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Architecture</span></div>
-    </div>
-    <div class="gallery-item" data-cat="landscape" onclick="openLightbox(this)">
-      <div class="photo-placeholder" style="height: 360px;" data-label="Landscape — 03"></div>
-      <div class="gallery-overlay"><span class="gallery-caption">Landscape</span></div>
-    </div>
+    <p class="gallery-empty">No photos yet — add some via the Admin panel below.</p>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
     <div class="about-img-wrap">
@@ -642,120 +267,57 @@
       <p>Describe your approach to the craft: what draws you to robotics, architecture, landscapes, and capturing senior portraits. What do you look for in a shot?</p>
       <p>Add any other details — where you're based, how long you've been shooting, gear you love, or what inspires you.</p>
       <div class="about-stats">
-        <div>
-          <span class="stat-num">5+</span>
-          <span class="stat-label">Years shooting</span>
-        </div>
-        <div>
-          <span class="stat-num">200+</span>
-          <span class="stat-label">Sessions completed</span>
-        </div>
-        <div>
-          <span class="stat-num">4</span>
-          <span class="stat-label">Specialties</span>
-        </div>
+        <div><span class="stat-num">5+</span><span class="stat-label">Years shooting</span></div>
+        <div><span class="stat-num">200+</span><span class="stat-label">Sessions completed</span></div>
+        <div><span class="stat-num">4</span><span class="stat-label">Specialties</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SENIOR PRICING -->
 <section id="pricing">
   <p class="section-label">Senior Portraits</p>
   <h2 class="section-title">Pricing</h2>
   <p class="pricing-intro">Every senior session is crafted to feel effortless and personal. Choose the package that fits you best — all include fully edited digital images.</p>
-
   <div class="pricing-grid">
-    <!-- Essential -->
     <div class="pricing-card">
-      <p class="pricing-name">Essential</p>
-      <p class="pricing-price"><sup>$</sup>249</p>
-      <p class="pricing-unit">Per session</p>
-      <ul class="pricing-features">
-        <li>1-hour session</li>
-        <li>1 location</li>
-        <li>2 outfit changes</li>
-        <li>20 edited digital images</li>
-        <li>Online gallery delivery</li>
-      </ul>
+      <p class="pricing-name">Essential</p><p class="pricing-price"><sup>$</sup>249</p><p class="pricing-unit">Per session</p>
+      <ul class="pricing-features"><li>1-hour session</li><li>1 location</li><li>2 outfit changes</li><li>20 edited digital images</li><li>Online gallery delivery</li></ul>
       <a href="#contact" class="pricing-btn">Book this package</a>
     </div>
-
-    <!-- Signature — featured -->
     <div class="pricing-card featured">
       <span class="pricing-badge">Most Popular</span>
-      <p class="pricing-name">Signature</p>
-      <p class="pricing-price"><sup>$</sup>399</p>
-      <p class="pricing-unit">Per session</p>
-      <ul class="pricing-features">
-        <li>2-hour session</li>
-        <li>2 locations</li>
-        <li>Unlimited outfit changes</li>
-        <li>50 edited digital images</li>
-        <li>Online gallery + USB drive</li>
-        <li>1 canvas print included</li>
-      </ul>
+      <p class="pricing-name">Signature</p><p class="pricing-price"><sup>$</sup>399</p><p class="pricing-unit">Per session</p>
+      <ul class="pricing-features"><li>2-hour session</li><li>2 locations</li><li>Unlimited outfit changes</li><li>50 edited digital images</li><li>Online gallery + USB drive</li><li>1 canvas print included</li></ul>
       <a href="#contact" class="pricing-btn">Book this package</a>
     </div>
-
-    <!-- Premium -->
     <div class="pricing-card">
-      <p class="pricing-name">Premium</p>
-      <p class="pricing-price"><sup>$</sup>599</p>
-      <p class="pricing-unit">Per session</p>
-      <ul class="pricing-features">
-        <li>Half-day session (4 hrs)</li>
-        <li>3+ locations</li>
-        <li>Unlimited outfit changes</li>
-        <li>100 edited digital images</li>
-        <li>Online gallery + USB drive</li>
-        <li>3 premium prints</li>
-        <li>Priority editing (48 hrs)</li>
-      </ul>
+      <p class="pricing-name">Premium</p><p class="pricing-price"><sup>$</sup>599</p><p class="pricing-unit">Per session</p>
+      <ul class="pricing-features"><li>Half-day session (4 hrs)</li><li>3+ locations</li><li>Unlimited outfit changes</li><li>100 edited digital images</li><li>Online gallery + USB drive</li><li>3 premium prints</li><li>Priority editing (48 hrs)</li></ul>
       <a href="#contact" class="pricing-btn">Book this package</a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-grid">
     <div class="contact-info">
       <p class="section-label">Get in Touch</p>
       <h2 class="section-title">Let's work<br>together</h2>
       <p>Whether you're booking a senior session, have a commercial project in mind, or just want to say hello — I'd love to hear from you.</p>
-      <div class="contact-detail">
-        <span class="contact-detail-label">Email</span>
-        <span class="contact-detail-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0b8b5bcbcbf90a9bfa5a2beb1bdb5feb3bfbd">[email&#160;protected]</a></span>
-      </div>
-      <div class="contact-detail">
-        <span class="contact-detail-label">Phone</span>
-        <span class="contact-detail-val">(555) 000-0000</span>
-      </div>
-      <div class="contact-detail">
-        <span class="contact-detail-label">Based in</span>
-        <span class="contact-detail-val">Your City, State</span>
-      </div>
+      <div class="contact-detail"><span class="contact-detail-label">Email</span><span class="contact-detail-val">hello@yourname.com</span></div>
+      <div class="contact-detail"><span class="contact-detail-label">Phone</span><span class="contact-detail-val">(555) 000-0000</span></div>
+      <div class="contact-detail"><span class="contact-detail-label">Based in</span><span class="contact-detail-val">Your City, State</span></div>
     </div>
-
     <form class="contact-form" onsubmit="handleSubmit(event)">
       <div class="form-row">
-        <div class="form-group">
-          <label for="fname">First name</label>
-          <input type="text" id="fname" placeholder="Jane" required>
-        </div>
-        <div class="form-group">
-          <label for="lname">Last name</label>
-          <input type="text" id="lname" placeholder="Smith">
-        </div>
+        <div class="form-group"><label>First name</label><input type="text" placeholder="Jane" required></div>
+        <div class="form-group"><label>Last name</label><input type="text" placeholder="Smith"></div>
       </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="jane@example.com" required></div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="jane@example.com" required>
-      </div>
-      <div class="form-group">
-        <label for="interest">I'm interested in</label>
-        <select id="interest">
+        <label>I'm interested in</label>
+        <select>
           <option value="">Select a service...</option>
           <option>Senior Portrait — Essential ($249)</option>
           <option>Senior Portrait — Signature ($399)</option>
@@ -766,25 +328,20 @@
           <option>Other</option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" placeholder="Tell me a bit about what you have in mind..."></textarea>
-      </div>
-      <div class="form-submit">
-        <button type="submit" class="btn btn-solid" style="border: none; width: 100%; font-family: 'DM Sans', sans-serif; font-weight: 300; padding: 1rem;">Send Message</button>
-      </div>
-      <p id="form-success" style="display:none; font-size:13px; color: var(--mid); text-align:center; margin-top: 0.5rem; letter-spacing: 0.05em;">Thank you — I'll be in touch soon.</p>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell me a bit about what you have in mind..."></textarea></div>
+      <button type="submit" class="btn btn-solid" style="width:100%;padding:1rem;border:none;">Send Message</button>
+      <p id="form-success" style="display:none;font-size:13px;color:var(--mid);text-align:center;margin-top:0.5rem;letter-spacing:0.05em;">Thank you — I'll be in touch soon.</p>
     </form>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p class="footer-copy">&copy; 2025 Your Name Photography</p>
   <div class="footer-links">
     <a href="#">Instagram</a>
     <a href="#">Facebook</a>
     <a href="#">Pinterest</a>
+    <button class="admin-trigger" onclick="openAdmin()">Admin</button>
   </div>
 </footer>
 
@@ -794,34 +351,305 @@
   <img id="lightbox-img" src="" alt="">
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <button class="admin-x" onclick="closeAdmin()">&times;</button>
+
+    <!-- LOGIN -->
+    <div id="viewLogin">
+      <p class="admin-title">Admin</p>
+      <p class="admin-sub">Sign in to upload photos</p>
+      <div class="afield">
+        <label>Password</label>
+        <input type="password" id="adminPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <p class="amsg err" id="loginErr">Incorrect password.</p>
+      <button class="btn btn-solid" style="width:100%;border:none;" onclick="doLogin()">Sign in</button>
+    </div>
+
+    <!-- UPLOAD DASHBOARD -->
+    <div id="viewDash" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div><p class="admin-title">Upload a Photo</p><p class="admin-sub">Photos go live on your site instantly</p></div>
+        <button class="admin-sign-out" onclick="doLogout()">Sign out</button>
+      </div>
+
+      <!-- DROP ZONE -->
+      <div class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*" onchange="onFileSelected(this)">
+        <div class="drop-zone-icon">&#8679;</div>
+        <div class="drop-zone-text"><strong>Click to choose a photo</strong><br>or drag and drop it here<br><span style="font-size:11px;color:var(--dim);">JPG, PNG, WEBP — up to 32MB</span></div>
+        <div class="drop-zone-preview" id="dropPreview">
+          <img id="previewImg" src="" alt="">
+          <p class="drop-zone-filename" id="previewName"></p>
+        </div>
+      </div>
+
+      <div class="afield">
+        <label>Category</label>
+        <select id="uploadCat">
+          <option value="robotics">Robotics</option>
+          <option value="architecture">Architecture</option>
+          <option value="landscape">Landscape</option>
+          <option value="seniors">Senior Portraits</option>
+        </select>
+      </div>
+      <div class="afield">
+        <label>Caption (optional)</label>
+        <input type="text" id="uploadCaption" placeholder="e.g. Golden hour, downtown">
+      </div>
+
+      <div class="upload-progress" id="uploadProgress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <p class="progress-label" id="progressLabel">Uploading...</p>
+      </div>
+
+      <p class="amsg ok" id="uploadOk">Photo uploaded and added to your gallery!</p>
+      <p class="amsg err" id="uploadErr">Upload failed — please try again.</p>
+
+      <button class="btn btn-solid" id="uploadBtn" style="width:100%;border:none;margin-bottom:1.5rem;" onclick="uploadPhoto()">Upload Photo</button>
+
+      <hr class="adivider">
+      <p style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--dim);margin-bottom:0.75rem;">Your photos (<span id="photoCount">0</span>)</p>
+      <ul class="admin-photo-list" id="adminPhotoList"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── CHANGE YOUR PASSWORD HERE ──────────────────────────────────────────────
+  const ADMIN_PASSWORD = 'Catya-2025';
+  const IMGBB_KEY = 'b955e6fce1d6ab2170b6e388f37061f1';
+  // ──────────────────────────────────────────────────────────────────────────
+
+  let photos = [];
+  let activeFilter = 'all';
+  let selectedFile = null;
+  let isLoggedIn = false;
+
+  function init() {
+    const stored = localStorage.getItem('portfolio_photos');
+    if (stored) { try { photos = JSON.parse(stored); } catch(e) { photos = []; } }
+    renderGallery();
+    setupDragDrop();
+  }
+
+  function save() { localStorage.setItem('portfolio_photos', JSON.stringify(photos)); }
+
+  function renderGallery() {
+    const grid = document.getElementById('galleryGrid');
+    const list = activeFilter === 'all' ? photos : photos.filter(p => p.category === activeFilter);
+    if (list.length === 0) {
+      grid.innerHTML = '<p class="gallery-empty">No photos yet — add some via the Admin panel below.</p>';
+      return;
+    }
+    grid.innerHTML = list.map((p, i) => `
+      <div class="gallery-item" data-cat="${p.category}" onclick="openLightbox('${p.url}')">
+        <img src="${p.url}" alt="${p.caption || p.category}" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">${p.caption || p.category}</span></div>
+        <button class="gallery-delete" onclick="deletePhoto(event,${photos.indexOf(p)})" title="Delete">&#x2715;</button>
+      </div>`).join('');
+  }
+
   function filterGallery(cat, btn) {
+    activeFilter = cat;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      if (cat === 'all' || item.dataset.cat === cat) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
+    renderGallery();
+  }
+
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeAdmin(); } });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => document.getElementById('form-success').style.display = 'none', 5000);
+  }
+
+  // ── ADMIN ──────────────────────────────────────────────────────────────────
+  function openAdmin() {
+    document.getElementById('adminOverlay').classList.add('open');
+    if (isLoggedIn) { showDash(); } else { showLogin(); }
+  }
+  function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
+  function showLogin() {
+    document.getElementById('viewLogin').style.display = 'block';
+    document.getElementById('viewDash').style.display = 'none';
+    document.getElementById('loginErr').style.display = 'none';
+    document.getElementById('adminPass').value = '';
+    setTimeout(() => document.getElementById('adminPass').focus(), 100);
+  }
+  function showDash() {
+    document.getElementById('viewLogin').style.display = 'none';
+    document.getElementById('viewDash').style.display = 'block';
+    refreshAdminList();
+  }
+  function doLogin() {
+    if (document.getElementById('adminPass').value === ADMIN_PASSWORD) {
+      isLoggedIn = true;
+      document.body.classList.add('admin-on');
+      showDash();
+    } else {
+      document.getElementById('loginErr').style.display = 'block';
+      document.getElementById('adminPass').value = '';
+    }
+  }
+  function doLogout() {
+    isLoggedIn = false;
+    document.body.classList.remove('admin-on');
+    closeAdmin();
+  }
+
+  // ── FILE SELECTION ─────────────────────────────────────────────────────────
+  function onFileSelected(input) {
+    const file = input.files[0];
+    if (!file) return;
+    selectedFile = file;
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById('previewImg').src = e.target.result;
+      document.getElementById('previewName').textContent = file.name;
+      document.getElementById('dropPreview').style.display = 'block';
+      document.getElementById('dropZone').querySelector('.drop-zone-text').style.display = 'none';
+      document.getElementById('dropZone').querySelector('.drop-zone-icon').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function setupDragDrop() {
+    const zone = document.getElementById('dropZone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) {
+        document.getElementById('fileInput').files = e.dataTransfer.files;
+        onFileSelected(document.getElementById('fileInput'));
       }
     });
   }
 
-  function openLightbox(el) {
-    const img = el.querySelector('img');
-    if (img) {
-      document.getElementById('lightbox-img').src = img.src;
-      document.getElementById('lightbox').classList.add('open');
+  // ── UPLOAD TO IMGBB ────────────────────────────────────────────────────────
+  async function uploadPhoto() {
+    if (!selectedFile) {
+      showMsg('uploadErr', 'Please choose a photo first.');
+      return;
+    }
+    const category = document.getElementById('uploadCat').value;
+    const caption = document.getElementById('uploadCaption').value.trim();
+    const btn = document.getElementById('uploadBtn');
+
+    btn.disabled = true;
+    btn.textContent = 'Uploading...';
+    document.getElementById('uploadProgress').style.display = 'block';
+    document.getElementById('uploadOk').style.display = 'none';
+    document.getElementById('uploadErr').style.display = 'none';
+    setProgress(30, 'Uploading to ImgBB...');
+
+    try {
+      const base64 = await toBase64(selectedFile);
+      const body = new FormData();
+      body.append('key', IMGBB_KEY);
+      body.append('image', base64.split(',')[1]);
+      if (caption) body.append('name', caption);
+
+      setProgress(60, 'Processing...');
+      const res = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body });
+      const data = await res.json();
+
+      if (data.success) {
+        setProgress(100, 'Done!');
+        const photo = { url: data.data.url, category, caption, id: data.data.id };
+        photos.unshift(photo);
+        save();
+        renderGallery();
+        refreshAdminList();
+        showMsg('uploadOk', '');
+        resetUploadForm();
+      } else {
+        throw new Error(data.error?.message || 'Upload failed');
+      }
+    } catch (err) {
+      showMsg('uploadErr', 'Upload failed — please try again.');
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Upload Photo';
+      setTimeout(() => {
+        document.getElementById('uploadProgress').style.display = 'none';
+        setProgress(0, '');
+      }, 1500);
     }
   }
 
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
+  function toBase64(file) {
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(r.result);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
   }
 
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLightbox();
-  });
+  function setProgress(pct, label) {
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = label;
+  }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function showMsg(id, text) {
+    const el = document.getElementById(id);
+    if (text) el.textContent = text;
+    el.style.display = 'block';
+    setTimeout(() => el.style.display = 'none', 4000);
+  }
+
+  function resetUploadForm() {
+    selectedFile = null;
+    document.getElementById('fileInput').value = '';
+    document.getElementById('uploadCaption').value = '';
+    document.getElementById('dropPreview').style.display = 'none';
+    document.getElementById('dropZone').querySelector('.drop-zone-text').style.display = 'block';
+    document.getElementById('dropZone').querySelector('.drop-zone-icon').style.display = 'block';
+  }
+
+  function deletePhoto(e, i) {
+    e.stopPropagation();
+    if (!confirm('Remove this photo?')) return;
+    photos.splice(i, 1);
+    save();
+    renderGallery();
+    refreshAdminList();
+  }
+
+  function refreshAdminList() {
+    document.getElementById('photoCount').textContent = photos.length;
+    const list = document.getElementById('adminPhotoList');
+    if (photos.length === 0) {
+      list.innerHTML = '<li style="font-size:12px;color:var(--dim);padding:0.5rem 0;">No photos yet.</li>';
+      return;
+    }
+    list.innerHTML = photos.map((p, i) => `
+      <li class="apl-item">
+        <img class="apl-thumb" src="${p.url}" alt="">
+        <div class="apl-info">
+          <span class="apl-cat">${p.category}</span>
+          <span class="apl-cap">${p.caption || 'No caption'}</span>
+        </div>
+        <button class="apl-del" onclick="deletePhoto(event,${i})">&#x2715;</button>
+      </li>`).join('');
+  }
+
+  init();
+</script>
+</body>
+</html>

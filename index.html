@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catya's Photography</title>
+<title>Portfolio — Photography</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -213,7 +213,7 @@
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Catya's Photography</a>
+  <a href="#" class="nav-logo">Catya Photography</a>
   <ul class="nav-links">
     <li><a href="#gallery" class="active">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -305,7 +305,7 @@
       <p class="section-label">Get in Touch</p>
       <h2 class="section-title">Let's work<br>together</h2>
       <p>Whether you're booking a senior session, have a commercial project in mind, or just want to say hello — I'd love to hear from you.</p>
-      <div class="contact-detail"><span class="contact-detail-label">Email</span><span class="contact-detail-val">hello@yourname.com</span></div>
+      <div class="contact-detail"><span class="contact-detail-label">Email</span><span class="contact-detail-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="751d1019191a350c1a00071b1418105b161a18">[email&#160;protected]</a></span></div>
       <div class="contact-detail"><span class="contact-detail-label">Phone</span><span class="contact-detail-val">(555) 000-0000</span></div>
       <div class="contact-detail"><span class="contact-detail-label">Based in</span><span class="contact-detail-val">Your City, State</span></div>
     </div>
@@ -336,10 +336,9 @@
 </section>
 
 <footer>
-  <p class="footer-copy">&copy; Catya's Photography </p>
+  <p class="footer-copy">&copy; Catya Photography</p>
   <div class="footer-links">
     <a href="#">Instagram</a>
-    <a href="#">Facebook</a>
     <a href="#">Pinterest</a>
     <button class="admin-trigger" onclick="openAdmin()">Admin</button>
   </div>
@@ -417,7 +416,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── CHANGE YOUR PASSWORD HERE ──────────────────────────────────────────────
   const ADMIN_PASSWORD = 'Catya-2025';
   const IMGBB_KEY = 'b955e6fce1d6ab2170b6e388f37061f1';
@@ -557,13 +556,13 @@
     setProgress(30, 'Uploading to ImgBB...');
 
     try {
-      const base64 = await toBase64(selectedFile);
+      setProgress(50, 'Uploading...');
       const body = new FormData();
       body.append('key', IMGBB_KEY);
-      body.append('image', base64.split(',')[1]);
+      body.append('image', selectedFile);
       if (caption) body.append('name', caption);
 
-      setProgress(60, 'Processing...');
+      setProgress(75, 'Processing...');
       const res = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body });
       const data = await res.json();
 
@@ -590,15 +589,6 @@
         setProgress(0, '');
       }, 1500);
     }
-  }
-
-  function toBase64(file) {
-    return new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload = () => res(r.result);
-      r.onerror = rej;
-      r.readAsDataURL(file);
-    });
   }
 
   function setProgress(pct, label) {
@@ -643,13 +633,3 @@
         <img class="apl-thumb" src="${p.url}" alt="">
         <div class="apl-info">
           <span class="apl-cat">${p.category}</span>
-          <span class="apl-cap">${p.caption || 'No caption'}</span>
-        </div>
-        <button class="apl-del" onclick="deletePhoto(event,${i})">&#x2715;</button>
-      </li>`).join('');
-  }
-
-  init();
-</script>
-</body>
-</html>

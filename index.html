@@ -213,7 +213,7 @@
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Catya</a>
+  <a href="#" class="nav-logo">Catya's Photography</a>
   <ul class="nav-links">
     <li><a href="#gallery" class="active">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -417,8 +417,9 @@
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── CHANGE YOUR PASSWORD HERE ──────────────────────────────────────────────
-  const ADMIN_PASSWORD = 'Catya-2025';
-  const IMGBB_KEY = 'b955e6fce1d6ab2170b6e388f37061f1';
+  const ADMIN_PASSWORD = 'Catya-2026';
+  const CLOUDINARY_CLOUD = 'dl8yfktsr';
+  const CLOUDINARY_PRESET = 'portfolio';
   // ──────────────────────────────────────────────────────────────────────────
 
   let photos = [];
@@ -552,22 +553,20 @@
     document.getElementById('uploadProgress').style.display = 'block';
     document.getElementById('uploadOk').style.display = 'none';
     document.getElementById('uploadErr').style.display = 'none';
-    setProgress(30, 'Uploading to ImgBB...');
+    setProgress(30, 'Uploading...');
 
     try {
-      setProgress(50, 'Uploading...');
       const body = new FormData();
-      body.append('key', IMGBB_KEY);
-      body.append('image', selectedFile);
-      if (caption) body.append('name', caption);
+      body.append('file', selectedFile);
+      body.append('upload_preset', CLOUDINARY_PRESET);
 
-      setProgress(75, 'Processing...');
-      const res = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body });
+      setProgress(65, 'Processing...');
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body });
       const data = await res.json();
 
-      if (data.success) {
+      if (data.secure_url) {
         setProgress(100, 'Done!');
-        const photo = { url: data.data.url, category, caption, id: data.data.id };
+        const photo = { url: data.secure_url, category, caption, id: data.public_id };
         photos.unshift(photo);
         save();
         renderGallery();
